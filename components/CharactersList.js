@@ -4,9 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { CircularProgress, Grid } from "@mui/material";
 import { NotResults } from "./NotResults";
 
-
 export const CharactersList = ({ data }) => {
-
   if (data?.length === 0) {
     return <NotResults />;
   }

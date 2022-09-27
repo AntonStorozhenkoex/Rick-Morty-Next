@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import { ThemeProvider } from "@mui/styles";
-import * as React from "react";;
+import * as React from "react";
 import { CacheProvider } from "@emotion/react";
 import Head from "next/head";
 import createEmotionCache from "../src/createEmotionCache";

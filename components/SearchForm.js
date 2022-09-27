@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from "react";
-import { debounce, Grid, MenuItem, TextField,Select } from "@mui/material";
+import { debounce, Grid, MenuItem, TextField, Select } from "@mui/material";
 import { useFormikContext } from "formik";
 import { genders, species, status } from "../constants";
 import theme from "../src/theme";
 
 export const SearchForm = () => {
-  const { values, handleSubmit,handleChange } = useFormikContext();
+  const { values, handleSubmit, handleChange } = useFormikContext();
 
   const onSubmit = useCallback(debounce(handleSubmit, 2000), []);
 
@@ -30,7 +30,7 @@ export const SearchForm = () => {
         >
           <Select
             name="status"
-            sx={{ width: "145px",  backgroundColor: theme.palette.inputBgColor }}
+            sx={{ width: "145px", backgroundColor: theme.palette.inputBgColor }}
             onChange={handleChange}
             value={values.status}
           >
@@ -43,7 +43,7 @@ export const SearchForm = () => {
           <Select
             name="species"
             component={Select}
-            sx={{ width: "145px",  backgroundColor: theme.palette.inputBgColor }}
+            sx={{ width: "145px", backgroundColor: theme.palette.inputBgColor }}
             onChange={handleChange}
             value={values.species}
           >

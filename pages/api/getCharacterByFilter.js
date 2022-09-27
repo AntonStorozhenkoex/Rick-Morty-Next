@@ -1,4 +1,4 @@
-import {  gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { client } from "../../graphql/config";
 import { getQueryBody } from "../../services";
 
@@ -7,7 +7,9 @@ export default async (req, res) => {
 
   try {
     const { data } = await client.query({
-      query: gql `${getQueryBody(type,gender,status,species)}`,
+      query: gql`
+        ${getQueryBody(type, gender, status, species)}
+      `,
     });
     res.status(200).json({ characters: data.characters.results, error: null });
   } catch (error) {

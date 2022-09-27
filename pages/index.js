@@ -13,7 +13,9 @@ export async function getServerSideProps(context) {
   const { status, gender, type, species } = context.query;
 
   const { data } = await client.query({
-    query: gql `${getQueryBody(type ,gender,status,species)}`,
+    query: gql`
+      ${getQueryBody(type, gender, status, species)}
+    `,
   });
   return {
     props: {
