@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["rickandmortyapi.com"],
   },
+  compiler: {
+    reactRemoveProperties: true,
+  }
 };
 
 module.exports = nextConfig;

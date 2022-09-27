@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { Header } from "../components/Header";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { CharactersList } from "../components/CharactersList";
@@ -7,40 +6,14 @@ import { SearchForm } from "../components/SearchForm";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { client } from "../graphql/config";
+import { getQueryBody } from "../services";
 
 export async function getServerSideProps(context) {
   const { status, gender, type, species } = context.query;
 
-  const client = new ApolloClient({
-    uri: "https://rickandmortyapi.com/graphql/",
-    cache: new InMemoryCache(),
-  });
-
   const { data } = await client.query({
-    query: gql`
-        query {
-          characters(filter: { status: "${status || ""}",type: "${
-      type || ""
-    }", gender: "${gender || ""}", species: "${species || ""}" }) {
-            results {
-              name
-              id
-              status
-              species
-              gender
-              type
-              image
-              location {
-                name
-              }
-              episode {
-                id
-                episode
-              }
-            }
-          }
-        }
-      `,
+    query: gql `${getQueryBody(type ,gender,status,species)}`,
   });
   return {
     props: {
@@ -59,10 +32,10 @@ export default function Home(results) {
     const result = await fetch("/api/getCharacterByFilter", {
       method: "post",
       body: JSON.stringify({
-        status: status,
-        species: species,
-        type: type,
-        gender: gender,
+        status,
+        species,
+        type,
+        gender,
       }),
     });
     const data = await result.json();
@@ -72,10 +45,10 @@ export default function Home(results) {
         pathname: "/",
         query: {
           ...router.query,
-          status: status,
-          gender: gender,
-          type: type,
-          species: species,
+          status,
+          gender,
+          type,
+          species,
         },
       },
       undefined,
@@ -84,7 +57,7 @@ export default function Home(results) {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Rick&Morty</title>
       </Head>

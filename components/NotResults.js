@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { theme } from "../config/theme/theme";
+import theme from "../src/theme";
 
 export const NotResults = () => {
   return (

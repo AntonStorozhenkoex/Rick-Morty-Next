@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import { theme } from "../config/theme/theme";
+import theme from "../src/theme";
 
 export const CharacterCard = ({ item }) => {
   return (
